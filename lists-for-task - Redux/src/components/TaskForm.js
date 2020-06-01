@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as actions from '../actions/index'
 
 
@@ -77,6 +77,7 @@ class TaskForm extends Component {
     }
 
     render() {
+        if (!this.props.isDisplayForm) return '';
         var { id } = this.state;
         return (
             <div className="panel panel-warning">
@@ -123,19 +124,22 @@ class TaskForm extends Component {
 }
 
 
-const mapStatetoProps = state =>{
-    return{
-        
+const mapStatetoProps = state => {
+    return {
+        isDisplayForm: state.isDisplayForm
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
-    return{
-        onAddTask : (task) => {
+    return {
+        onAddTask: (task) => {
             dispatch(actions.addTask(task))
         },
         onCloseForm: () => {
-          dispatch(actions.closeForm())
+            dispatch(actions.closeForm())
+        },
+        onToggleForm: () => {
+            dispatch(actions.toggleForm())
         }
     }
 }

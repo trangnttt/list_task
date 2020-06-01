@@ -4,7 +4,7 @@ import TaskForm from './components/TaskForm';
 import Control from './components/Control';
 import TaskList from './components/TaskList';
 import { connect } from 'react-redux';
-import * as action from './actions/index'
+import * as actions from './actions/index'
 
 class App extends Component {
   constructor(props) {
@@ -47,19 +47,6 @@ class App extends Component {
     localStorage.setItem('tasks', JSON.stringify(tasks)); // save in localStorage
     console.log(data);
   }
-
-  //cập nhật status
-  onUpdateStatus = (id) => {
-    var { tasks } = this.state;
-    var index = this.findIndex(id);
-    if (index !== -1) {
-      tasks[index].status = !tasks[index].status;
-      this.setState({
-        tasks: tasks
-      });
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-  }
   findIndex = (id) => {
     var { tasks } = this.state; //lấy danh sách các tasks
     var result = -1;
@@ -69,20 +56,6 @@ class App extends Component {
       }
     });
     return result;
-  }
-
-  // xóa tasks
-  onDelete = (id) => {
-    var { tasks } = this.state;
-    var index = this.findIndex(id);
-    if (index !== -1) {
-      tasks.splice(index, 1); //xóa
-      this.setState({
-        tasks: tasks
-      });
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-    this.onCloseForm();
   }
 
   onShowForm = () => {
@@ -175,11 +148,6 @@ class App extends Component {
     //   });
     // }
 
-
-    // onCloseForm đóng form bằng X trong TaskForm
-    var elmTaskForm = isDisplayForm
-      ? <TaskForm onSubmit={this.onSubmit}
-        task={taskEditing} /> : '';
     return (
       <div className="container">
         <div className="text-center">
@@ -188,7 +156,8 @@ class App extends Component {
         </div>
         <div className="row">
           <div className={isDisplayForm ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' : ''}>
-            {elmTaskForm}
+            <TaskForm onSubmit={this.onSubmit}
+              task={taskEditing} />
           </div>
           <div className={isDisplayForm ? 'col-xs-8 col-sm-8 col-md-8 col-lg-8' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12'}>
             <button type="button" className="btn btn-primary" onClick={this.onToggleForm}>
@@ -202,8 +171,6 @@ class App extends Component {
               sortBy={sortBy}
               sortValue={sortValue} />
             <TaskList
-              onUpdateStatus={this.onUpdateStatus}
-              onDelete={this.onDelete}
               onUpdate={this.onUpdate}
               onFilter={this.onFilter} />
           </div>
@@ -221,10 +188,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     onToggleForm: () => {
-      dispatch(action.toggleForm())
+      dispatch(actions.toggleForm())
     },
     onOpenForm: () => {
-      dispatch(action.openForm())
+      dispatch(actions.openForm())
     }
   };
 }
