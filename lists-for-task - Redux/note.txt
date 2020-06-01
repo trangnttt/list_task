@@ -1,0 +1,20 @@
+- Phân chia components
+- Tạo dữ liệu mẫu
+Lấy id tự động từ (npm install randomstring)
+
+- đổ dữ liệu tự động taskList
+- đóng mở thêm công việc 
+- chức năng thêm công việc sẽ tự động đổ vào bảng data (onChange, onSubmit trong TaskForm)
+dùng state để lưu trữ
+-chức năng thay đổi status 
+truyền 1 cái props từ taskList truyền vào taskItem 1 onUpdateStatus
+trong taskItem lấy id truyền ngược ra cho taskList -> App
+tìm vị trí của đúng item cần cập nhật dùng findIndex(id)
+
+-chức năng xóa 1 tasks 
+bắt sự tại taskItem truyền ra App xóa đi phần tử trong tab và cập nhật lại 
+
+-button sửa
+-chức năng lọc
+-chức năng tìm kiếm
+-chức năng sắp xếp
