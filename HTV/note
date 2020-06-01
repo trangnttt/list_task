@@ -1,0 +1,87 @@
++ webMail 
+link: https://mail.hybrid-technologies.vn/logout/?locale=en
+
+trangntt@hybrid-technologies.vn
+
++ chatWork
+link: https://www.chatwork.com/login.php?args=
+
++ gate system
+link: https://gate.hybrid-technologies.co.jp
+
++ create react app
+https://www.techomoro.com/how-to-install-and-setup-a-react-app-on-ubuntu-18-04-1/
+
++ delete foloder in ubuntu
+gõ lệnh: sudo rm -r path
+
++ tạo sẵn folder -> vào VSCode gõ lệnh sudo npm init react-app demo
+
++ lỗi không taọ được folder 
+link: sudo npm -g install npm@next
+
++ save file VSC
+sudo chown -R $USER:$USER .
+sudo chown -c -R $USER:$USER $HOME
+
++ load page in ReactJs
+link: https://reacttraining.com/react-router/web/guides/quick-start
+
+
++ add the React Responsive Carousel package
+gõ lệnh: npm i react-responsive-carousel
+khai báo:
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
++ add the React Google Map package 
+gõ lệnh: npm i react-google-map
+Khai báo:
+	import {
+	  withScriptjs,
+	  withGoogleMap,
+	  GoogleMap,
+	  Marker
+	} from "react-google-maps";
+
++ add bootstrap 4
+gõ lệnh: npm i bootstrap-4-react
+Khai báo: import "bootstrap/dist/css/bootstrap.min.css";
+
++ react-bootstrap
+link: https://react-bootstrap-v3.netlify.app/
+
++ examples
+link: https://reactjsexample.com/tag/games/
+
++ git commit
+link: https://www.liquidweb.com/kb/committing-pushing-github-ubuntu-18-04/
+
++ ký tự html
+link: https://dev.w3.org/html5/html-author/charref
+
++ create menu reactjs 
+link: https://codeburst.io/getting-started-with-react-router-5c978f70df91
+
++ change-language
+link: https://levelup.gitconnected.com/learn-how-to-translate-react-with-i18next-a8ec4a8b737d
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
