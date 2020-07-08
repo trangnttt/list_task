@@ -66,6 +66,27 @@ link: https://codeburst.io/getting-started-with-react-router-5c978f70df91
 + change-language
 link: https://levelup.gitconnected.com/learn-how-to-translate-react-with-i18next-a8ec4a8b737d
 
++ add an SSH Key
+link: https://www.youtube.com/watch?v=WgZIv5HI44o
+
+trangntt@CPU0485:~/Documents/360-htv$ git branch feature/re360_8
+trangntt@CPU0485:~/Documents/360-htv$ git checkout feature/re360_8
+
++ tạo nhánh mới 
+git checkout feature/re360_13
+git add .
+git commit -m 
+git push
+git push --set-upstream origin feature/re360_13
+
+lấy từ nhánh cũ sang nhánh mới
+git push origin feature/re360_8:feature/re360_13
+git pull 
+git branch
+
+
++ tham khảo filter https://codesandbox.io/s/3x51yzollq?file=/index.js
+
 
 
 

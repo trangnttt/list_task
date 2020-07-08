@@ -1,0 +1,16 @@
+**** Xóa trên API 
+onDelete = () => {
+	//////gọi lệnh xóa trên API 
+    axios.delete(`https://5ed60b14c2ca2300162c5e3e.mockapi.io/reQuestion/${this.state.id}`)
+      .then(res => {
+	//////gọi lại API sau khi xóa thay cho load page js
+        axios.get('https://5ed60b14c2ca2300162c5e3e.mockapi.io/reQuestion').then(
+          res => {
+            const question = res.data;
+            this.setState({ question });
+          }
+        );
+	////tắt modal xóa câu hỏi 
+        this.state.isDisplayForm = false;
+      })
+  }

@@ -109,7 +109,9 @@ class TaskForm extends Component {
                         </select>
                         <br />
                         <div className="text-center">
-                            <button type="submit" className="btn btn-warning">Thêm</button>&nbsp;
+                            <button type="submit" className="btn btn-warning">
+                                {id !== '' ? 'Lưu lại' : 'Thêm'}
+                            </button>&nbsp;
                             <button type="submit" className="btn btn-danger"
                                 onClick={this.onClear}>Hủy Bỏ</button>
                         </div>

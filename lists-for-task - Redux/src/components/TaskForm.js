@@ -15,105 +15,109 @@ class TaskForm extends Component {
 
     // gọi form cập nhật công việc
     componentWillMount() {
-        if (this.props.task) {
+        // if (this.props.task) {
+        //     this.setState({
+        //         id: this.props.task.id,
+        //         name: this.props.task.name,
+        //         status: this.props.task.status
+        //     });
+        // }
+        if (this.props.itemEditing && this.props.itemEditing.id !== null) {
             this.setState({
-                id: this.props.task.id,
-                name: this.props.task.name,
-                status: this.props.task.status
+                id: this.props.itemEditing.id,
+                name: this.props.itemEditing.name,
+                status: this.props.itemEditing.status
             });
+        }
+        else {
+            this.onClear();
         }
     }
 
     //TH:khi bấm thêm không mở sửa được
     componentWillReceiveProps(nextProps) {
-        if (nextProps && nextProps.task) {
+        console.log(nextProps)
+        if (nextProps && nextProps.itemEditing) {
             this.setState({
-                id: nextProps.task.id,
-                name: nextProps.task.name,
-                status: nextProps.task.status
+                id: nextProps.itemEditing.id,
+                name: nextProps.itemEditing.name,
+                status: nextProps.itemEditing.status
             });
         }
-        //chuyển từ sửa sang thêm
-        else if (!nextProps.task) {
-            this.setState({
-                id: '',
-                name: '',
-                status: false,
-            });
+        else{
+            this.onClear();
         }
     }
 
-    onCloseForm = () => {
-        this.props.onCloseForm();
+    onExitForm = () => {
+        this.props.onExitForm();
     }
 
-    onChange = (event) => {
+    onHandleChange = (event) => {
         var target = event.target;
         var name = target.name;
         var value = target.value;
-        if (name === 'status') {
-            value = target.value ? true : false;
-        }
         this.setState({
             [name]: value,
         })
     }
 
 
-    onSubmit = (event) => {
+    onHandleSubmit = (event) => {
         event.preventDefault(); // không load lại trang
-        this.props.onAddTask(this.state);
+        this.props.onSaveTask(this.state);
         //Hủy bỏ và đóng form
         this.onClear();
-        this.onCloseForm();
+        this.onExitForm();
     }
 
     //button hủy bỏ khi chưa lưu
-    onClear = () => {
+    onClear = () => {;
         this.setState({
+            // id: '',
             name: '',
             status: false
         })
     }
 
+
     render() {
-        if (!this.props.isDisplayForm) return '';
-        var { id } = this.state;
+        if (!this.props.isDisplayForm) return null;
         return (
             <div className="panel panel-warning">
                 <div className="panel-heading">
                     <h3 className="panel-title">
-                        {id !== '' ? 'Cập nhật công việc' : 'Thêm Công Việc'}
+                        {!this.state.id ? 'Thêm Công Việc' : 'Cập nhật công việc'}
                         <span className="fa fa-times-circle float-right"
-                            onClick={this.onCloseForm}
+                            onClick={this.onExitForm}
                         >
                         </span>
                     </h3>
 
                 </div>
                 <div className="panel-body">
-                    <form onSubmit={this.onSubmit}>
+                    <form onSubmit={this.onHandleSubmit}>
                         <div className="form-group">
                             <label>Tên :</label>
                             <input type="text"
                                 className="form-control"
                                 name="name"
                                 value={this.state.name}
-                                onChange={this.onChange} />
+                                onChange={this.onHandleChange} />
                         </div>
                         <label>Trạng Thái :</label>
                         <select className="form-control"
                             name="status"
                             required="required"
                             value={this.state.status}
-                            onChange={this.onChange}>
+                            onChange={this.onHandleChange}>
                             <option value={true}>Kích Hoạt</option>
                             <option value={false}>Ẩn</option>
                         </select>
                         <br />
                         <div className="text-center">
-                            <button type="submit" className="btn btn-warning">Thêm</button>&nbsp;
-                            <button type="submit" className="btn btn-danger"
+                            <button type="submit" className="btn btn-warning">Lưu lại</button>&nbsp;
+                            <button type="button" className="btn btn-danger"
                                 onClick={this.onClear}>Hủy Bỏ</button>
                         </div>
                     </form>
@@ -126,21 +130,22 @@ class TaskForm extends Component {
 
 const mapStatetoProps = state => {
     return {
-        isDisplayForm: state.isDisplayForm
+        isDisplayForm: state.isDisplayForm,
+        itemEditing: state.itemEditing
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddTask: (task) => {
-            dispatch(actions.addTask(task))
+        onSaveTask: (task) => {
+            dispatch(actions.saveTask(task))
         },
-        onCloseForm: () => {
+        onExitForm: () => {
             dispatch(actions.closeForm())
         },
-        onToggleForm: () => {
-            dispatch(actions.toggleForm())
-        }
+        // onToggleForm: () => {
+        //     dispatch(actions.toggleForm())
+        // }
     }
 }
 

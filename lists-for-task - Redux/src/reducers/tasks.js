@@ -23,20 +23,27 @@ var myReducer = (state = initalState, action) => {
         case types.LIST_ALL:
             return state;
         //thêm công việc
-        case types.ADD_TASK:
-            var newTask = {
-                id: randomstring.generate(7),
+        case types.SAVE_TASK:
+            var task = {
+                id: action.task.id,
                 name: action.task.name,
                 status: action.task.status === 'true' ? true : false
+            };
+            if (!task.id) {
+                task.id = randomstring.generate(7);
+                state.push(task);
             }
-            state.push(newTask);
+            else{
+                index = findIndex(state, task.id);
+                state[index] = task;
+            }
             localStorage.setItem('tasks', JSON.stringify(state));
             return [...state]; // coppy ra 1 array mới và trả về viết trong es6
         //cập nhật trạng thái(ẩn, kích hoạt)
         case types.UPDATE_STATUS_TASK:
             id = action.id;
             index = findIndex(state, id);
-            var cloneTask = {...state[index]};
+            var cloneTask = { ...state[index] };
             cloneTask.status = !cloneTask.status;
             state[index] = cloneTask;
 

@@ -13,6 +13,5 @@ var myReducer = (state = initalState, action) => {
             return false;
         default: return state;
     }
-    return state;
 }
 export default myReducer;
