@@ -1,0 +1,18 @@
+import React, { Component } from "react";
+class Tags extends Component {
+    render() {
+        return (
+            <div class="widget categories">
+                <header>
+                    <h3 class="h6">Categories</h3>
+                </header>
+                <div class="item d-flex justify-content-between"><a href="#">Growth</a><span>12</span></div>
+                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+                <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
+                <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
+                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+            </div>
+        );
+    }
+}
+export default Tags;
